@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, FlatList, Text, View} from 'react-native';
+import {Dimensions, FlatList, SafeAreaView, Text, View} from 'react-native';
 import styles from './styles';
 import {useQuery} from '@tanstack/react-query';
 import {getBatterySocHistory} from '../../apis/batterySocHistory';
@@ -59,20 +59,22 @@ export function HomeWrapper() {
   };
   return data ? (
     <View style={styles.container}>
-      <View style={styles.graphWrapper}>
-        <LineChart
-          style={styles.graph}
-          data={data2}
-          height={250}
-          width={Dimensions.get('screen').width - 32}
-          //   xLabelsOffset={20}
-          yAxisSuffix="%"
-          yAxisInterval={1} // optional, defaults to 1
-          chartConfig={chartConfig}
-          verticalLabelRotation={0}
-          bezier
-        />
-      </View>
+      <SafeAreaView>
+        <View style={styles.graphWrapper}>
+          <LineChart
+            style={styles.graph}
+            data={data2}
+            height={250}
+            width={Dimensions.get('screen').width - 32}
+            //   xLabelsOffset={20}
+            yAxisSuffix="%"
+            yAxisInterval={1} // optional, defaults to 1
+            chartConfig={chartConfig}
+            verticalLabelRotation={0}
+            bezier
+          />
+        </View>
+      </SafeAreaView>
       <Text style={styles.header}>Battery History</Text>
       <FlatList
         data={constructInflectionPoints(data)}

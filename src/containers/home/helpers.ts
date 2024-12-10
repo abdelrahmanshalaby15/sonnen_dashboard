@@ -8,12 +8,6 @@ export function constructInflectionPoints(
     {...batteryChargeHistory?.[0], state: 'Charging'},
   ];
   batteryChargeHistory?.reduce((prev, curr, index) => {
-    console.log(
-      `test-${index}`,
-      prev,
-      curr,
-      curr?.chargingLevel - prev?.chargingLevel,
-    );
     if (prev) {
       const currSlope = curr?.chargingLevel - prev?.chargingLevel > 0 ? 1 : -1;
       if (currSlope != slope) {
